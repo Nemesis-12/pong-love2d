@@ -3,11 +3,11 @@
 Paddle = Class{}
 
 -- Initialize Paddle
-function Paddle:init(x, y, w, h)
-    self.x = x
-    self.y = y
-    self.w = w
-    self.h = h
+function Paddle:init()
+    self.x = 10
+    self.y = 30
+    self.width = 5
+    self.height = 20
 
     -- Init paddle speed
     self.dy = 0
@@ -23,12 +23,12 @@ function Paddle:update(dt)
         self.y = math.max(0, self.y + self.dy * dt)
     -- We check if speed is +ve, that is, if we are moving down
     else
-        self.y = math.min(VIRTUAL_HEIGHT - self.h, self.y + self.dy * dt)
+        self.y = math.min(VIRTUAL_HEIGHT - self.height, self.y + self.dy * dt)
     end
 end
 
 -- Render Paddle
 function Paddle:render()
     love.graphics.setColor(1, 1, 1, 1)
-    love.graphics.rectangle('fill', self.x, self.y, self.w, self.h, 4, 4)
+    love.graphics.rectangle('fill', self.x, self.y, self.width, self.height)
 end
