@@ -1,5 +1,7 @@
+-- Declare GameOverState class
 GameOverState = Class{__includes = BaseState}
 
+-- Initialize state
 function GameOverState:init()
     self.player1 = Paddle(10, 30)
     self.player2 = Paddle(VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT - 30)
@@ -7,6 +9,7 @@ function GameOverState:init()
     self.paused = false
 end
 
+-- Update state
 function GameOverState:update(dt)
     -- Check if the game is paused
     if self.paused then
@@ -23,11 +26,13 @@ function GameOverState:update(dt)
         love.event.quit()
     end
 
+    -- If player wants to continue the game, change to serve
     if love.keyboard.wasPressed('enter') or love.keyboard.wasPressed('return') then
         gStateMachine:change('serve')
     end
 end
 
+-- Render objects
 function GameOverState:render()
     if self.paused then
         love.graphics.setFont(gFonts['large'])
