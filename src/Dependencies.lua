@@ -1,3 +1,5 @@
+-- Import all libraries and modules requried for the game
+
 -- https://github.com/Ulydev/push
 push = require 'lib/push'
 
