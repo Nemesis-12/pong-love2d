@@ -3,11 +3,11 @@
 Ball = Class{}
 
 -- Initialize ball
-function Ball:init(x, y, w, h)
-    self.x = x
-    self.y = y
-    self.w = w
-    self.h = h
+function Ball:init()
+    self.x = VIRTUAL_WIDTH / 2 - 2
+    self.y = VIRTUAL_HEIGHT / 2 - 2
+    self.width = 4
+    self.height = 4
 
     -- Initialize ball velocity
     -- These are private variables for keeping track of the speed
@@ -20,13 +20,13 @@ end
 function Ball:collides(paddle)
     -- First check if the left edge of either is farther to the right
     -- than right edge of the other
-    if self.x > paddle.x + paddle.w or paddle.x > self.x + self.w then
+    if self.x > paddle.x + paddle.width or paddle.x > self.x + self.width then
         return false
     end
 
     -- Then check to see if the bottom edge of either is higher than
     -- the edge of the other
-    if self.y > paddle.y + paddle.h or paddle.y > self.y + self.h then
+    if self.y > paddle.y + paddle.height or paddle.y > self.y + self.height then
         return false
     end
 
@@ -51,5 +51,5 @@ end
 -- Render ball
 function Ball:render()
     love.graphics.setColor(0.356, 0.753, 0.745, 1)
-    love.graphics.rectangle('fill', self.x, self.y, 4, 4)
+    love.graphics.rectangle('fill', self.x, self.y, self.width, self.height)
 end
