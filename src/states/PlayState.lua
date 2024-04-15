@@ -1,5 +1,7 @@
+-- Declare PlayState class
 PlayState = Class{__includes = BaseState}
 
+-- Initialize state
 function PlayState:init()
     self.player1 = Paddle(10, 30)
     self.player2 = Paddle(VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT - 30)
@@ -8,6 +10,7 @@ function PlayState:init()
     self.paused = false
 end
 
+-- Update state
 function PlayState:update(dt)
     -- Check if the game is paused
     if self.paused then
@@ -20,11 +23,11 @@ function PlayState:update(dt)
         self.paused = true
     end
 
+    -- Check if player wants to quit
     if love.keyboard.wasPressed('escape') then
         love.event.quit()
     end
 
-    -- Note that the paddle speed is defined in constants.lua
     -- Move the paddle
     if love.keyboard.isDown('w') then
         self.player1.dy = -PADDLE_SPEED
@@ -35,7 +38,7 @@ function PlayState:update(dt)
     end
 
     -- Player 2 Movement
-    -- Player 2 will move along with the ball which basically
+    -- Player 2 will move along with the ball which
     -- turns it into a very basic AI
     if self.ball.y < 0 then
         self.player2.y = -self.ball.y
@@ -45,8 +48,7 @@ function PlayState:update(dt)
         self.player2.y = 0
     end
 
-    -- Detect ball collision and reverse dx if true
-    -- Slightly increase speed
+    -- Detect ball collision
     if self.ball:collides(self.player1) then
         self.ball.dx = -self.ball.dx * 1.05
         self.ball.x = self.player1.x + 5
