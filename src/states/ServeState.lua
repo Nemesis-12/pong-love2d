@@ -1,5 +1,7 @@
+-- Declare ServeState class
 ServeState = Class{__includes = BaseState}
 
+-- Initialize state
 function ServeState:init()
     self.player1 = Paddle(10, 30)
     self.player2 = Paddle(VIRTUAL_WIDTH - 10, VIRTUAL_HEIGHT - 30)
@@ -7,6 +9,7 @@ function ServeState:init()
     self.paused = false
 end
 
+-- Update state
 function ServeState:update(dt)
     -- Check if the game is paused
     if self.paused then
@@ -37,6 +40,7 @@ function ServeState:update(dt)
 
 end
 
+-- Render objects
 function ServeState:render()
     if self.paused then
         love.graphics.setFont(gFonts['large'])
