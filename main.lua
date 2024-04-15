@@ -3,8 +3,8 @@ require 'src/Dependencies'
 
 -- Init game window and load assets
 function love.load()
-    -- Nearest-neighbor filtering is required when we need the images 
-    -- or fonts to load properly when upscaling or downscaling
+    -- Nearest-neighbor filtering is required to load 
+    -- things properly when upscaling or downscaling
     love.graphics.setDefaultFilter('nearest', 'nearest')
 
     -- Set application window title
@@ -13,13 +13,13 @@ function love.load()
     -- Generate a random seed
     math.randomseed(os.time())
 
-    -- Initialize font and size for the game. Size needs to be set when
-    -- we initialize and cannot be changed later.
+    -- Initialize font and size
     gFonts = {
         ['small'] = love.graphics.newFont('fonts/font.ttf', 8),
         ['medium'] = love.graphics.newFont('fonts/font.ttf', 16),
         ['large'] = love.graphics.newFont('fonts/font.ttf', 32)
     }
+    -- Default font
     love.graphics.setFont(gFonts['small'])
 
     -- Game SFX initialization
@@ -30,19 +30,19 @@ function love.load()
     }
 
     -- Initialize virtual window which will contain the game
-    -- The function below is replaced since we are using the 
-    -- push library for resolution
-    -- love.window.setMode(WINDOW_WIDTH, WINDOW_HEIGHT, {fullscreen = false, resizable = true, vsync = true})
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {fullscreen = false, resizable = true, vsync = true})
 
+    -- Initialize game state machine
     gStateMachine = StateMachine {
         ['start'] = function() return StartState() end,
         ['serve'] = function () return ServeState() end,
         ['play'] = function() return PlayState() end,
         ['game'] = function() return GameOverState() end
     }
+    -- Default game state
     gStateMachine:change('start')
 
+    -- Table used to keep track of the keys being pressed
     love.keyboard.keysPressed = {}
 end
 
@@ -59,10 +59,13 @@ function love.update(dt)
    love.keyboard.keysPressed = {}
 end
 
+-- Input handling
 function love.keypressed(key)
     love.keyboard.keysPressed[key] = true
 end
 
+-- Check if particular key was pressed and perform
+-- action based on that
 function love.keyboard.wasPressed(key)
     return love.keyboard.keysPressed[key]  
 end
@@ -72,7 +75,10 @@ function love.draw()
     -- Start virtual screen rendering
     push:start()
 
+    -- Set background color
     love.graphics.clear(0.176, 0.192, 0.259, 1)
+
+    -- Render game
     gStateMachine:render()
 
     -- Show FPS
