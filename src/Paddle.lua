@@ -1,11 +1,10 @@
 -- Declare paddle class
-
 Paddle = Class{}
 
 -- Initialize Paddle
-function Paddle:init()
-    self.x = 10
-    self.y = 30
+function Paddle:init(x, y)
+    self.x = x
+    self.y = y
     self.width = 5
     self.height = 20
 
