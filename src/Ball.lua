@@ -1,5 +1,4 @@
 -- Declare ball class
-
 Ball = Class{}
 
 -- Initialize ball
@@ -10,13 +9,11 @@ function Ball:init()
     self.height = 4
 
     -- Initialize ball velocity
-    -- These are private variables for keeping track of the speed
     self.dx = math.random(2) == 1 and 100 or -100
     self.dy = math.random(-50, 50) * 1.5
 end
 
 -- Check ball collision
--- It requires paddle as argument and checks if the rectangles overlap 
 function Ball:collides(paddle)
     -- First check if the left edge of either is farther to the right
     -- than right edge of the other
@@ -34,7 +31,7 @@ function Ball:collides(paddle)
     return true
 end
 
--- Reset ball
+-- Reset ball to original position
 function Ball:reset()
     self.x = VIRTUAL_WIDTH / 2 - 2
     self.y = VIRTUAL_HEIGHT / 2 - 2
