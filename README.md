@@ -25,8 +25,8 @@ git clone https://github.com/Nemesis-12/pong-love2d.git
 Navigate to the directory where the game is installed and double-click either pong.exe or pong.love file to play.
 
 ## Gameplay
-Move paddle up: W
-Move paddle down: S
+- Move paddle up: W
+- Move paddle down: S
 
 ## Features
 - Face off against a challenging AI
