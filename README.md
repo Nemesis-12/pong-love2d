@@ -1,5 +1,9 @@
 # Pong Clone
 
+<div align="center">
+  <img src="pong.png" alt="Pong Title Screen" width="600">
+</div>
+
 ## Table of Contents
 - [Introduction](#introduction)
 - [Requirements](#requirements)
@@ -10,7 +14,7 @@
 - [License](#license)
 
 ## Introduction
-This is a modern reimagining of the 1972 classic arcade game, Pong, initially released by Atari. The clone is built using the versatile Lua framework, Love2d, and serves as a fun exploration of retro gaming and game development fundamentals
+This is a modern reimagining of the 1972 classic arcade game, Pong, initially released by Atari. The clone is built using the versatile Lua framework, LÖVE2D, and serves as a fun exploration of retro gaming and game development fundamentals
 
 ## Requirements
 - [LÖVE2D framework](https://love2d.org/): Ensure that you have the LÖVE2D framework installed that is compatible with your operating system.
